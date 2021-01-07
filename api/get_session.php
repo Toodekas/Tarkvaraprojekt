@@ -23,3 +23,4 @@ function get_sessions($id) {
 	$db->close();
 	return $json;
 }
+?>

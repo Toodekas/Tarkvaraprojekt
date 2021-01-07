@@ -23,3 +23,4 @@ function get_incident($id) {
 	$db->close();
 	return $json;
 }
+?>

@@ -24,3 +24,4 @@ $db = get_db();
 $stmt = mysqli_prepare($db, "DELETE FROM sessions WHERE id = ?");
 mysqli_stmt_bind_param($stmt, "i", $body["id"]);
 echo mysqli_stmt_execute($stmt);
+?>

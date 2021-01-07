@@ -34,3 +34,4 @@ function logout($username) {
 	mysqli_stmt_bind_param($stmt, "s", $username);
 	return mysqli_stmt_execute($stmt);
 }
+?>

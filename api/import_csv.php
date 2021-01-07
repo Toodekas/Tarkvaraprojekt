@@ -11,3 +11,4 @@ echo mysqli_query($db, "LOAD DATA LOCAL INFILE '../sessions.csv' INTO TABLE sess
 // https://www.digitalocean.com/community/tutorials/how-to-set-up-password-authentication-with-apache-on-ubuntu-14-04 for restricted downloads
 // Alternatively an url-not-accessible folder
 // Files beginning with .ht can't be accessed
+?>

@@ -13,3 +13,4 @@ $end = microtime(true);
 echo $user["@pass"] . "\n";
 
 echo "Time taken (s): ".($end-$start);
+?>

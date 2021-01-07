@@ -47,3 +47,4 @@ mysqli_stmt_bind_param($stmt, str_repeat("s", $c), ...$insert_params);
 if (mysqli_stmt_execute($stmt)) {
 	echo mysqli_fetch_row(mysqli_query($db, "SELECT LAST_INSERT_ID()"))[0];
 }
+?>

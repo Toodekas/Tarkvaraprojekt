@@ -23,3 +23,4 @@ function get_incidents($kliendi_nr) {
 	$db->close();
 	return $json;
 }
+?>

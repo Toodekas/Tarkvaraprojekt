@@ -48,3 +48,4 @@ foreach ($victim_res as $victim) {
 }
 
 echo $csv;
+?>

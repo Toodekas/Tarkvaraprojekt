@@ -98,3 +98,4 @@ function z($string) {
 		return $string;
 	}
 }
+?>

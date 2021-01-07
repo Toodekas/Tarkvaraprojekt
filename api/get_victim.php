@@ -42,3 +42,4 @@ mysqli_stmt_execute($stmt);
 $res = mysqli_fetch_all(mysqli_stmt_get_result($stmt), MYSQLI_ASSOC);
 
 echo json_encode($res);
+?>

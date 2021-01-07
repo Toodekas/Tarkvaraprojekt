@@ -11,3 +11,4 @@ require "verify_token.php";
 //Each object has three fields: "name", "data", and "datatype"
 //"name" corresponds to the column name in associated table
 //"dataype" is either "string", "number", or "boolean"
+?>
