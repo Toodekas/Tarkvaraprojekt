@@ -180,6 +180,7 @@ class Incident extends React.Component {
             piirkond: "teadmata",
             keel: "teadmata",
             vanus: "teadmata",
+            marac: 0,
             puue: "",
             lapsed: "0",
             rasedus: "",
@@ -684,7 +685,23 @@ class Incident extends React.Component {
                                             } label="Ei"/>
                                         </RadioGroup>
                                     </FormControl>
-
+                                    <FormControl margin="normal" fullWidth>
+                                        <FormLabel>Suunatud MARACi</FormLabel>
+                                        <RadioGroup className={classes.radiob}>
+                                            <FormControlLabel control={
+                                                <Radio
+                                                    disabled={!this.state.editingEnabled}
+                                                    checked={this.state.formValues.marac === 1}
+                                                    onClick={() => this.radioChange("marac", 1)}/>
+                                            } label="Jah"/>
+                                            <FormControlLabel control={
+                                                <Radio
+                                                    disabled={!this.state.editingEnabled}
+                                                    checked={this.state.formValues.marac === 0}
+                                                    onClick={() => this.radioChange("marac", 0)}/>
+                                            } label="Ei"/>
+                                        </RadioGroup>
+                                    </FormControl>        
                                     <FormControl margin="normal" fullwidth>
                                         <InputLabel htmlFor="rahastus">Rahastuse liik</InputLabel>
                                         <Select

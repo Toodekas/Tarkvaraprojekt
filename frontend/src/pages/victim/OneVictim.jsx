@@ -281,7 +281,7 @@ class Victim extends React.Component {
                             onChange={this.handleChange}
                             className={classes.input}
                             label="Haridustase"
-                            inputProps={{
+                            inputProps={{ 
                                 name: 'Haridustase',
                                 id: 'haridus_tase',
                             }
@@ -292,8 +292,8 @@ class Victim extends React.Component {
                             <MenuItem value={"Keskharidus"}>Keskharidus</MenuItem>
                             <MenuItem value={"Kutseharidus"}>Kutseharidus</MenuItem>
                             <MenuItem value={"Kõrgharidus"}>Kõrgharidus</MenuItem>
-
                         </Select>
+                    
                         <Grid container
                             direction="column"
                             justify="center"

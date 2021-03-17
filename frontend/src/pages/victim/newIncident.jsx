@@ -110,6 +110,7 @@ class NewIncident extends React.Component {
             piirkond: "teadmata",
             keel: "teadmata",
             vanus: "teadmata",
+            marac: 0,
             puue: 0,
             lapsed: 0,
             rasedus: 0,
@@ -498,6 +499,21 @@ class NewIncident extends React.Component {
                                                     checked={this.state.formValues.politsei === 0}
                                                     onClick={() => this.radioChange("politsei", 0)}
                                                 />
+                                            } label="Ei"/>
+                                        </RadioGroup>
+                                    </FormControl>
+                                    <FormControl margin="normal" fullWidth>
+                                        <FormLabel>Suunatud MARACi</FormLabel>
+                                        <RadioGroup className={classes.radiob}>
+                                            <FormControlLabel control={
+                                                <Radio
+                                                    checked={this.state.formValues.marac === 1}
+                                                    onClick={() => this.radioChange("marac", 1)}/>
+                                            } label="Jah"/>
+                                            <FormControlLabel control={
+                                                <Radio
+                                                    checked={this.state.formValues.marac === 0}
+                                                    onClick={() => this.radioChange("marac", 0)}/>
                                             } label="Ei"/>
                                         </RadioGroup>
                                     </FormControl>
