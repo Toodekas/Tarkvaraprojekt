@@ -44,6 +44,7 @@ CREATE TABLE `clients` (
   `national_id` bigint(20) unsigned DEFAULT NULL,
   `phone` bigint(20) unsigned DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
+  `haridus_tase` varchar(255) DEFAULT NULL,
   `muutja` varchar(64) DEFAULT NULL,
   `muutmisaeg` date DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -55,9 +56,9 @@ CREATE TABLE `clients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 TRUNCATE `clients`;
-INSERT INTO `clients` (`id`, `first_name`, `last_name`, `national_id`, `phone`, `email`, `muutja`, `muutmisaeg`) VALUES
-(2018171,	'Pille',	'PAGAN',	47102042742,	3725074194,	'pallamaali@gmail.com',	'asdf',	'2018-11-06'),
-(2018191,	'Mari',	'f',	NULL,	222555,	NULL,	'alo',	'2018-12-07');
+INSERT INTO `clients` (`id`, `first_name`, `last_name`, `national_id`, `phone`, `email`, `haridus_tase`,`muutja`, `muutmisaeg`) VALUES
+(2018171,	'Pille',	'PAGAN',	47102042742,	3725074194,	'pallamaali@gmail.com', 'Kõrgharidus',	'asdf',	'2018-11-06'),
+(2018191,	'Mari',	'f',	NULL,	222555,	NULL, NULL,	'alo',	'2018-12-07');
 
 DROP TABLE IF EXISTS `incidents`;
 CREATE TABLE `incidents` (

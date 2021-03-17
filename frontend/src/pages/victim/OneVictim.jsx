@@ -8,6 +8,9 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import Typography from '@material-ui/core/Typography';
 
@@ -77,7 +80,7 @@ class Victim extends React.Component {
         }
         if (isNaN(value) || value === undefined) value = event.target.value
         formValues[event.target.id] = value;
-        this.setState({formValues});
+        this.setState({ formValues });
     };
 
     state = {
@@ -88,7 +91,7 @@ class Victim extends React.Component {
             piirkond: "teadmata"
         }],
         editingEnabled: false,
-      isDeleteOpen: false,
+        isDeleteOpen: false,
         formValues: {
             id: this.props.victimID,
             first_name: "",
@@ -96,6 +99,7 @@ class Victim extends React.Component {
             phone: "",
             email: "",
             national_id: "",
+            haridus_tase: "",
         },
     };
 
@@ -108,20 +112,21 @@ class Victim extends React.Component {
                 phone: "",
                 email: "",
                 national_id: "",
+                haridus_tase: "",
             },
         })
             .then(res => {
                 console.log(res.data);
                 let values = res.data[0]
-                Object.keys(values).forEach(function(key,index) {
-                    if (values[key]===null) {
+                Object.keys(values).forEach(function (key, index) {
+                    if (values[key] === null) {
                         values[key] = ""
                     }
                 });
 
 
 
-                this.setState({formValues: values})
+                this.setState({ formValues: values })
                 console.log(this.state)
 
             })
@@ -139,19 +144,19 @@ class Victim extends React.Component {
             });
         });
     };
-  handleDeleteOpen = () => {
-    this.setState({ isDeleteOpen: true });
-  };
-  handleDeleteClose = () => {
-    this.setState({ isDeleteOpen: false });
-  };
-  handleDeleteContinue = () => {
-    this.axios.post('delete_victim.php', { id: this.props.victimID })
-      .then(res => {
-        console.log('delete: ', res);
-        navigate('/overview');
-      });
-  };
+    handleDeleteOpen = () => {
+        this.setState({ isDeleteOpen: true });
+    };
+    handleDeleteClose = () => {
+        this.setState({ isDeleteOpen: false });
+    };
+    handleDeleteContinue = () => {
+        this.axios.post('delete_victim.php', { id: this.props.victimID })
+            .then(res => {
+                console.log('delete: ', res);
+                navigate('/overview');
+            });
+    };
 
 
     handleUpdate = event => {
@@ -175,7 +180,7 @@ class Victim extends React.Component {
     };
 
     render() {
-        const {classes} = this.props;
+        const { classes } = this.props;
 
         return (
             <Layout title="Klient">
@@ -210,65 +215,90 @@ class Victim extends React.Component {
                             placeholder="1145"
                             value={this.props.victimID}
                         />
-                            <TextField
-                              fullWidth
-                              id="first_name"
-                              label="Eesnimi"
-                              className={classes.input}
+                        <TextField
+                            fullWidth
+                            id="first_name"
+                            label="Eesnimi"
+                            className={classes.input}
 
-                              disabled={!this.state.editingEnabled}
-                                // placeholder="Mari"
-                              onChange={this.handleChange}
-                              value={this.state.formValues.first_name}
-                              inputProps={{ pattern: letterPattern }} // bug in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=1361876
-                            />
-                            <TextField
-                              id="last_name"
-                              label="Perekonnanimi"
-                              className={classes.input}
-                              fullWidth
-                              disabled={!this.state.editingEnabled}
-                                // placeholder="Maasikas"
-                              onChange={this.handleChange}
-                              value={this.state.formValues.last_name}
-                              inputProps={{ pattern: letterPattern }}  /*bug in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=1361876*/
+                            disabled={!this.state.editingEnabled}
+                            // placeholder="Mari"
+                            onChange={this.handleChange}
+                            value={this.state.formValues.first_name}
+                            inputProps={{ pattern: letterPattern }} // bug in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=1361876
+                        />
+                        <TextField
+                            id="last_name"
+                            label="Perekonnanimi"
+                            className={classes.input}
+                            fullWidth
+                            disabled={!this.state.editingEnabled}
+                            // placeholder="Maasikas"
+                            onChange={this.handleChange}
+                            value={this.state.formValues.last_name}
+                            inputProps={{ pattern: letterPattern }}  /*bug in FF: https://bugzilla.mozilla.org/show_bug.cgi?id=1361876*/
 
-                            />
-                            <TextField
-                                label="Isikukood"
-                                id="national_id"
-                                className={classes.input}
-                                disabled={!this.state.editingEnabled}
-                                fullWidth
-                                onChange={this.handleChange}
-                                value={this.state.formValues.national_id}
-                                inputProps={{pattern: "([1-6]\\d\\d(0[1-9]|1[0-2])(0[1-9]|1\\d|2\\d|30|31)\\d{4})?"}}
-                            />
-                            <TextField
-                                id="phone"
-                                label="Telefoninr"
-                                className={classes.input}
-                                disabled={!this.state.editingEnabled}
-                                fullWidth
-                                onChange={this.handleChange}
-                                value={this.state.formValues.phone}
-                                inputProps={{pattern: "\\d*"}}
-                            />
-                            <TextField
-                                label="E-maili aadress"
-                                id="email"
-                                type="email"
-                                className={classes.input}
-                                disabled={!this.state.editingEnabled}
-                                fullWidth
-                                onChange={this.handleChange}
-                                value={this.state.formValues.email}
-                            />
+                        />
+                        <TextField
+                            label="Isikukood"
+                            id="national_id"
+                            className={classes.input}
+                            disabled={!this.state.editingEnabled}
+                            fullWidth
+                            onChange={this.handleChange}
+                            value={this.state.formValues.national_id}
+                            inputProps={{ pattern: "([1-6]\\d\\d(0[1-9]|1[0-2])(0[1-9]|1\\d|2\\d|30|31)\\d{4})?" }}
+                        />
+                        <TextField
+                            id="phone"
+                            label="Telefoninr"
+                            className={classes.input}
+                            disabled={!this.state.editingEnabled}
+                            fullWidth
+                            onChange={this.handleChange}
+                            value={this.state.formValues.phone}
+                            inputProps={{ pattern: "\\d*" }}
+                        />
+                        <TextField
+                            label="E-maili aadress"
+                            id="email"
+                            type="email"
+                            className={classes.input}
+                            disabled={!this.state.editingEnabled}
+                            fullWidth
+                            onChange={this.handleChange}
+                            value={this.state.formValues.email}
+                        />
+                        <InputLabel
+                            margin="normal"
+                            className={classes.input}
+                            htmlFor="haridus_tase">Haridustase</InputLabel>
+
+                        <Select
+                            id='haridus_tase'
+                            disabled={!this.state.editingEnabled}
+                            value={this.state.formValues.haridus_tase}
+                            onChange={this.handleChange}
+                            className={classes.input}
+                            label="Haridustase"
+                            inputProps={{
+                                name: 'Haridustase',
+                                id: 'haridus_tase',
+                            }
+                            }
+                            margin="normal"
+                            fullWidth>
+                            <MenuItem value={"Põhiharidus"}>Põhiharidus</MenuItem>
+                            <MenuItem value={"Keskharidus"}>Keskharidus</MenuItem>
+                            <MenuItem value={"Kutseharidus"}>Kutseharidus</MenuItem>
+                            <MenuItem value={"Kõrgharidus"}>Kõrgharidus</MenuItem>
+
+                        </Select>
                         <Grid container
-                              direction="column"
-                              justify="center"
-                              alignItems="center"
-                              spacing={8}>
+                            direction="column"
+                            justify="center"
+                            alignItems="center"
+                            spacing={8}>
                             <Grid item>
                                 {!this.state.editingEnabled ?
                                     <Button
@@ -282,16 +312,16 @@ class Victim extends React.Component {
                                         MUUDA ISIKUANDMEID
                                     </Button> : null}
 
-                              {!this.state.editingEnabled && isAdmin() ?
-                                <Button
-                                  className={classes.button}
-                                  variant="contained"
-                                  color="primary"
-                                  onClick={e => {
-                                    this.handleDeleteOpen();
-                                  }}
-                                >
-                                  KUSTUTA ISIK
+                                {!this.state.editingEnabled && isAdmin() ?
+                                    <Button
+                                        className={classes.button}
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={e => {
+                                            this.handleDeleteOpen();
+                                        }}
+                                    >
+                                        KUSTUTA ISIK
                                 </Button> : null}
 
                                 {this.state.editingEnabled ?
@@ -325,11 +355,11 @@ class Victim extends React.Component {
 
                 </Paper>
 
-                <IncidentTable classes={classes} uid={this.props.victimID} incidents={this.state.incidents}/>
+                <IncidentTable classes={classes} uid={this.props.victimID} incidents={this.state.incidents} />
 
 
-              <ConfirmDelete open={this.state.isDeleteOpen} object="klienti" onClose={this.handleDeleteClose}
-                             onContinue={this.handleDeleteContinue}/>
+                <ConfirmDelete open={this.state.isDeleteOpen} object="klienti" onClose={this.handleDeleteClose}
+                    onContinue={this.handleDeleteContinue} />
             </Layout>
         );
     }

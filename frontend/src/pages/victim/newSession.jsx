@@ -103,7 +103,7 @@ class NewSession extends React.Component {
         this.axios.post("create_session.php", this.state.formValues)
             .then(res => {
                 let data = res.data;
-                console.log("result: ", res)
+                console.log("result: ", data)
                 navigate('/victim/' + this.props.victimID + '/' + this.props.incidentID + "/" + data);
             })
     }
