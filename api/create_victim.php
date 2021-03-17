@@ -7,7 +7,7 @@ $body = json_decode(file_get_contents("php://input"), true);
 
 $insert_fields = array();
 $insert_params = array();
-$params = array("first_name", "last_name", "national_id", "phone", "email", "haridus_tase");
+$params = array("first_name", "last_name", "national_id", "phone", "email", "haridus_tase", "korduv");
 
 //Loop through all parameters to see if they were asked to be inserted
 foreach ($params as $param) {

@@ -117,6 +117,7 @@ class NewVictim extends React.Component {
             email: "",
             national_id: "",
             haridus_tase: "",
+            korduv: "",
         },
         error: '',
     }
@@ -175,6 +176,30 @@ class NewVictim extends React.Component {
                             <MenuItem value={"Keskharidus"}>Keskharidus</MenuItem>
                             <MenuItem value={"Kutseharidus"}>Kutseharidus</MenuItem>
                             <MenuItem value={"Kõrgharidus"}>Kõrgharidus</MenuItem>
+                        </Select>
+                        <InputLabel htmlFor="korduv"
+                            className={classes.input}
+
+                            margin="normal"
+                        >Korduv</InputLabel>
+                        <Select
+                            id='korduv'
+                            value={this.state.formValues['korduv']}
+                            onChange={this.handleSelectChange}
+                            className={classes.input}
+                            label="Korduv"
+                            inputProps={{
+                                name: 'korduv',
+                                id: 'korduv',
+                            }
+                            }
+                            margin="normal"
+                            fullWidth>
+                            <MenuItem value={"Esmakordne"}>Esmakordne</MenuItem>
+                            <MenuItem value={"Korduv 2019"}>Korduv 2019</MenuItem>
+                            <MenuItem value={"Korduv 2020"}>Korduv 2020</MenuItem>
+                            <MenuItem value={"Korduv 2021"}>Korduv 2021</MenuItem>
+                            <MenuItem value={"Korduv 2022"}>Korduv 2022</MenuItem>
 
                         </Select>
                         <Grid container
