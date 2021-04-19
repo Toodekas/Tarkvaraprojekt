@@ -32,4 +32,8 @@ mtu_kaasatud BOOL NOT NULL,
 tuttavad_kaasatud BOOL NOT NULL,
 markused TEXT NOT NULL,
 muutja VARCHAR(64),
-muutmisaeg DATE);
+muutmisaeg DATE,
+kommentaarid TEXT,
+tootu_kassa BOOL NOT NULL,
+muu_partner BOOL NOT NULL,
+rahastus ENUM('Muu rahastus', 'NTK rahastus') NOT NULL);

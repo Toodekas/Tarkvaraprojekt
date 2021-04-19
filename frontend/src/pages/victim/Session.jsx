@@ -196,7 +196,11 @@ class Session extends React.Component {
             haridusasutus_kaasatud: "",
             mtu_kaasatud: "",
             tuttavad_kaasatud: "",
-            markused: ""
+            markused: "",
+            kommentaarid: "",
+            tootu_kassa: 0,
+            muu_partner: 0,
+            rahastus: "Muu rahastus",
         },
         initialValue: {}
     };
@@ -322,8 +326,19 @@ class Session extends React.Component {
                                             } label="Ei"/>
                                         </RadioGroup>
                                     </FormControl>
-
-
+                                    <br/>
+                                    <FormControl margin="normal" className={classes.textfield}>
+                                        <InputLabel htmlFor="kommentaarid">Kommentaarid</InputLabel>
+                                        <Input
+                                            multiline
+                                            rowsMax="15"
+                                            disabled={!this.state.editingEnabled}
+                                            value={this.state.formValues.kommentaarid}
+                                            onChange={this.handleChange}
+                                            id="kommentaarid"
+                                        >
+                                        </Input>
+                                    </FormControl>
                                 </Grid>
 
                                 <Grid item sm={5}>
@@ -419,9 +434,24 @@ class Session extends React.Component {
                                             {checkbox("haridusasutus_kaasatud", this.state.formValues.haridusasutus_kaasatud, "Haridusasutus")}
                                             {checkbox("mtu_kaasatud", this.state.formValues.mtu_kaasatud, "MTÜ-d")}
                                             {checkbox("tuttavad_kaasatud", this.state.formValues.tuttavad_kaasatud, "Sõbrad, sugulased")}
+                                            {checkbox("tootu_kassa", this.state.formValues.tootu_kassa, "Töötukassa")}
+                                            {checkbox("muu_partner", this.state.formValues.muu_partner, "Muu partner")}
                                         </div>
                                     </FormControl>
-
+                                    <FormControl margin="normal" fullwidth>
+                                        <InputLabel htmlFor="rahastus">Rahastuse liik</InputLabel>
+                                        <Select
+                                            disabled={!this.state.editingEnabled}
+                                            value={this.state.formValues.rahastus}
+                                            onChange={this.handleSelectChange}
+                                            inputProps={{
+                                                name: 'rahastus',
+                                                id: 'rahastus',
+                                            }}>
+                                            <MenuItem value={"Muu rahastus"}>Muu rahastus</MenuItem>
+                                            <MenuItem value={"NTK rahastus"}>NTK rahastus</MenuItem>
+                                        </Select>
+                                    </FormControl>
                                 </Grid>
 
                                 <Grid container

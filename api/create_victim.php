@@ -7,7 +7,7 @@ $body = json_decode(file_get_contents("php://input"), true);
 
 $insert_fields = array();
 $insert_params = array();
-$params = array("first_name", "last_name", "national_id", "phone", "email", "haridus_tase", "korduv");
+$params = array("first_name", "last_name", "national_id", "phone", "email", "haridus_tase");
 
 //Loop through all parameters to see if they were asked to be inserted
 foreach ($params as $param) {
@@ -47,4 +47,3 @@ mysqli_stmt_bind_param($stmt, str_repeat("s", $c), ...$insert_params);
 if (mysqli_stmt_execute($stmt)) {
 	echo mysqli_fetch_row(mysqli_query($db, "SELECT LAST_INSERT_ID()"))[0];
 }
-?>

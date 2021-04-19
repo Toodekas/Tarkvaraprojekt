@@ -23,4 +23,3 @@ function get_sessions($incident_id) {
 	$db->close();
 	return $json;
 }
-?>

@@ -123,4 +123,3 @@ function delete_user($deleted_username, $caller_username) {
 	$stmt->execute() or trigger_error($db->error);
 	$db->close();
 }
-?>

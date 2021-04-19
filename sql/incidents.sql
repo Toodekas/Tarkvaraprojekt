@@ -4,7 +4,6 @@ piirkond ENUM('teadmata', 'Harjumaa', 'Hiiumaa', 'Ida-Virumaa', 'J�gevamaa', '
 kliendi_nr INT NOT NULL, FOREIGN KEY (kliendi_nr) REFERENCES clients (id) ON DELETE CASCADE ON UPDATE CASCADE,
 keel ENUM('teadmata', 'eesti', 'vene', 'inglise', 'muu') NOT NULL,
 vanus ENUM('teadmata', 'alla 18', '18-24', '25-49', '50-64', '65+') NOT NULL,
-marac BOOL NOT NULL,
 puue BOOL NOT NULL,
 lapsed TINYINT NOT NULL,
 rasedus BOOL NOT NULL,
@@ -30,4 +29,5 @@ muu_ohver BOOL NOT NULL,
 politsei BOOL NOT NULL,
 rahastus ENUM('Muu rahastus', 'NTK rahastus') NOT NULL,
 muutja VARCHAR(64),
-muutmisaeg DATE);
+muutmisaeg DATE,
+marac BOOL NOT NULL);

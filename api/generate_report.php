@@ -182,4 +182,3 @@ foreach ($res as $line) {
 }
 
 echo $csv;
-?>

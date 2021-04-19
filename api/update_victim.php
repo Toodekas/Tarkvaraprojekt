@@ -7,7 +7,7 @@ $body = json_decode(file_get_contents("php://input"), true);
 
 $update_fields = array();
 $update_params = array();
-$params = array("first_name", "last_name", "national_id", "phone", "email","haridus_tase", "korduv");
+$params = array("first_name", "last_name", "national_id", "phone", "email", "haridus_tase");
 
 //Loop through all parameters to see if they were asked to be updated
 $c = 5; //Update field count if everything was to be updated

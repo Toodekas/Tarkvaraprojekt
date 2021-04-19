@@ -44,8 +44,6 @@ CREATE TABLE `clients` (
   `national_id` bigint(20) unsigned DEFAULT NULL,
   `phone` bigint(20) unsigned DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `haridus_tase` varchar(255) DEFAULT NULL,
-  `korduv` varchar(255) DEFAULT NULL,
   `muutja` varchar(64) DEFAULT NULL,
   `muutmisaeg` date DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -57,9 +55,9 @@ CREATE TABLE `clients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 TRUNCATE `clients`;
-INSERT INTO `clients` (`id`, `first_name`, `last_name`, `national_id`, `phone`, `email`, `haridus_tase`, `korduv`, `muutja`, `muutmisaeg`) VALUES
-(2018171,	'Pille',	'PAGAN',	47102042742,	3725074194,	'pallamaali@gmail.com', 'Kõrgharidus', 'Esmakordne','asdf',	'2018-11-06'),
-(2018191,	'Mari',	'f',	NULL,	222555,	NULL, NULL,	NULL, 'alo',	'2018-12-07');
+INSERT INTO `clients` (`id`, `first_name`, `last_name`, `national_id`, `phone`, `email`, `muutja`, `muutmisaeg`) VALUES
+(2018171,	'Pille',	'PAGAN',	47102042742,	3725074194,	'pallamaali@gmail.com',	'asdf',	'2018-11-06'),
+(2018191,	'Mari',	'f',	NULL,	222555,	NULL,	'alo',	'2018-12-07');
 
 DROP TABLE IF EXISTS `incidents`;
 CREATE TABLE `incidents` (
@@ -68,7 +66,6 @@ CREATE TABLE `incidents` (
   `kliendi_nr` int(11) NOT NULL,
   `keel` enum('teadmata','eesti','vene','inglise','muu') NOT NULL,
   `vanus` enum('teadmata','alla 18','18-24','25-49','50-64','65+') NOT NULL,
-  `marac` tinyint(1) NOT NULL,
   `puue` tinyint(1) NOT NULL,
   `lapsed` tinyint(4) NOT NULL,
   `rasedus` tinyint(1) NOT NULL,
@@ -101,24 +98,24 @@ CREATE TABLE `incidents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 TRUNCATE `incidents`;
-INSERT INTO `incidents` (`id`, `piirkond`, `kliendi_nr`, `keel`, `vanus`, `marac`, `puue`, `lapsed`, `rasedus`, `elukoht`, `fuusiline_vagivald`, `vaimne_vagivald`, `majanduslik_vagivald`, `seksuaalne_vagivald`, `inimkaubandus`, `teadmata_vagivald`, `partner_vagivallatseja`, `ekspartner_vagivallatseja`, `vanem_vagivallatseja`, `laps_vagivallatseja`, `sugulane_vagivallatseja`, `tookaaslane_vagivallatseja`, `muu_vagivallatseja`, `vagivallatseja_vanus`, `vagivallatseja_sugu`, `laps_ohver`, `vana_ohver`, `muu_ohver`, `politsei`, `rahastus`, `muutja`, `muutmisaeg`) VALUES
-(521,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	0,	0,	'teadmata',	0,	1,	1,	0,	0,	0,	1,	1,	1,	0,	1,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-08'),
-(522,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-11-23'),
-(523,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-11-23'),
-(524,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-11-23'),
-(536,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(537,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	-3,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(538,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(539,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	-1,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(540,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	-1,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(541,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(542,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(543,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(544,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	127,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(545,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	127,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(546,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	127,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(547,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	10,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
-(548,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	6,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07');
+INSERT INTO `incidents` (`id`, `piirkond`, `kliendi_nr`, `keel`, `vanus`, `puue`, `lapsed`, `rasedus`, `elukoht`, `fuusiline_vagivald`, `vaimne_vagivald`, `majanduslik_vagivald`, `seksuaalne_vagivald`, `inimkaubandus`, `teadmata_vagivald`, `partner_vagivallatseja`, `ekspartner_vagivallatseja`, `vanem_vagivallatseja`, `laps_vagivallatseja`, `sugulane_vagivallatseja`, `tookaaslane_vagivallatseja`, `muu_vagivallatseja`, `vagivallatseja_vanus`, `vagivallatseja_sugu`, `laps_ohver`, `vana_ohver`, `muu_ohver`, `politsei`, `rahastus`, `muutja`, `muutmisaeg`) VALUES
+(521,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	0,	0,	'teadmata',	0,	1,	1,	0,	0,	0,	1,	1,	1,	0,	1,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-08'),
+(522,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-11-23'),
+(523,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-11-23'),
+(524,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-11-23'),
+(536,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(537,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	-3,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(538,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(539,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	-1,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(540,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	-1,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(541,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(542,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(543,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	0,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(544,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	127,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(545,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	127,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(546,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	127,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(547,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	10,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(548,	'teadmata',	2018191,	'teadmata',	'teadmata',	0,	6,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07');
 
 DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
@@ -156,19 +153,21 @@ CREATE TABLE `sessions` (
   `markused` text NOT NULL,
   `muutja` varchar(64) DEFAULT NULL,
   `muutmisaeg` date DEFAULT NULL,
+  `kommentaarid` text DEFAULT NULL,
+
   PRIMARY KEY (`id`),
   KEY `incident_id` (`incident_id`),
   CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`incident_id`) REFERENCES `incidents` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 TRUNCATE `sessions`;
-INSERT INTO `sessions` (`id`, `incident_id`, `kuupaev`, `kirjeldus`, `sidevahendid`, `kriisinoustamine`, `kriisinoustamise_aeg`, `juhtuminoustamine`, `vorgustikutoo`, `psuhhonoustamine`, `juuranoustamine`, `tegevused_lapsega`, `tugiteenused`, `naise_majutus`, `laste_arv`, `laste_majutus`, `umarlaud`, `marac`, `perearst_kaasatud`, `emo_kaasatud`, `naistearst_kaasatud`, `politsei_kaasatud`, `prokuratuur_kaasatud`, `ohvriabi_kaasatud`, `lastekaitse_kaasatud`, `kov_kaasatud`, `tsiviilkohus_kaasatud`, `kriminaalkohus_kaasatud`, `haridusasutus_kaasatud`, `mtu_kaasatud`, `tuttavad_kaasatud`, `markused`, `muutja`, `muutmisaeg`) VALUES
-(4104,	524,	'2018-11-23',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-11-23'),
-(4105,	524,	'2018-11-23',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-11-23'),
-(4152,	523,	'2018-12-07',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-07'),
-(4153,	523,	'2018-12-07',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-07'),
-(4154,	548,	'0000-00-00',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-07'),
-(4155,	521,	'2018-12-07',	'',	0,	20.00,	'teadmata',	0.00,	55.00,	0.00,	1.00,	2.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-08');
+INSERT INTO `sessions` (`id`, `incident_id`, `kuupaev`, `kirjeldus`, `sidevahendid`, `kriisinoustamine`, `kriisinoustamise_aeg`, `juhtuminoustamine`, `vorgustikutoo`, `psuhhonoustamine`, `juuranoustamine`, `tegevused_lapsega`, `tugiteenused`, `naise_majutus`, `laste_arv`, `laste_majutus`, `umarlaud`, `marac`, `perearst_kaasatud`, `emo_kaasatud`, `naistearst_kaasatud`, `politsei_kaasatud`, `prokuratuur_kaasatud`, `ohvriabi_kaasatud`, `lastekaitse_kaasatud`, `kov_kaasatud`, `tsiviilkohus_kaasatud`, `kriminaalkohus_kaasatud`, `haridusasutus_kaasatud`, `mtu_kaasatud`, `tuttavad_kaasatud`, `markused`, `muutja`, `muutmisaeg`, `kommentaarid`) VALUES
+(4104,	524,	'2018-11-23',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-11-23','ppp'),
+(4105,	524,	'2018-11-23',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-11-23',''),
+(4152,	523,	'2018-12-07',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-07',''),
+(4153,	523,	'2018-12-07',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-07',''),
+(4154,	548,	'0000-00-00',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-07',''),
+(4155,	521,	'2018-12-07',	'',	0,	20.00,	'teadmata',	0.00,	55.00,	0.00,	1.00,	2.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-08', '');
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (

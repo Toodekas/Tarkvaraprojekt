@@ -180,7 +180,6 @@ class Incident extends React.Component {
             piirkond: "teadmata",
             keel: "teadmata",
             vanus: "teadmata",
-            marac: 0,
             puue: "",
             lapsed: "0",
             rasedus: "",
@@ -204,7 +203,8 @@ class Incident extends React.Component {
             vana_ohver: 0,
             muu_ohver: 0,
             politsei: "",
-            rahastus: "Muu rahastus"
+            rahastus: "Muu rahastus",
+            marac: 0,
         },
         initialValue: {}
     };
@@ -685,6 +685,21 @@ class Incident extends React.Component {
                                             } label="Ei"/>
                                         </RadioGroup>
                                     </FormControl>
+
+                                    <FormControl margin="normal" fullwidth>
+                                        <InputLabel htmlFor="rahastus">Rahastuse liik</InputLabel>
+                                        <Select
+                                            disabled={!this.state.editingEnabled}
+                                            value={this.state.formValues.rahastus}
+                                            onChange={this.handleSelectChange}
+                                            inputProps={{
+                                                name: 'rahastus',
+                                                id: 'rahastus',
+                                            }}>
+                                            <MenuItem value={"Muu rahastus"}>Muu rahastus</MenuItem>
+                                            <MenuItem value={"NTK rahastus"}>NTK rahastus</MenuItem>
+                                        </Select>
+                                    </FormControl>
                                     <FormControl margin="normal" fullWidth>
                                         <FormLabel>Suunatud MARACi</FormLabel>
                                         <RadioGroup className={classes.radiob}>
@@ -701,24 +716,7 @@ class Incident extends React.Component {
                                                     onClick={() => this.radioChange("marac", 0)}/>
                                             } label="Ei"/>
                                         </RadioGroup>
-                                    </FormControl>        
-                                    <FormControl margin="normal" fullwidth>
-                                        <InputLabel htmlFor="rahastus">Rahastuse liik</InputLabel>
-                                        <Select
-                                            disabled={!this.state.editingEnabled}
-                                            value={this.state.formValues.rahastus}
-                                            onChange={this.handleSelectChange}
-                                            inputProps={{
-                                                name: 'rahastus',
-                                                id: 'rahastus',
-                                            }}>
-                                            <MenuItem value={"Muu rahastus"}>Muu rahastus</MenuItem>
-                                            <MenuItem value={"NTK rahastus"}>NTK rahastus</MenuItem>
-                                        </Select>
                                     </FormControl>
-
-
-
                                 </Grid>
 
                             </Grid>

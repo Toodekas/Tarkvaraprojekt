@@ -19,4 +19,3 @@ file_put_contents($filename, $dump);
 `../cleaner.sh`
 
 echo $dump;
-?>

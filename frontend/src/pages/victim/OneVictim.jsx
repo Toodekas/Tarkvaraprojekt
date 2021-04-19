@@ -99,8 +99,6 @@ class Victim extends React.Component {
             phone: "",
             email: "",
             national_id: "",
-            haridus_tase: "",
-            korduv: "",
         },
     };
 
@@ -114,7 +112,6 @@ class Victim extends React.Component {
                 email: "",
                 national_id: "",
                 haridus_tase: "",
-                korduv: "",
             },
         })
             .then(res => {
@@ -283,7 +280,7 @@ class Victim extends React.Component {
                             onChange={this.handleChange}
                             className={classes.input}
                             label="Haridustase"
-                            inputProps={{ 
+                            inputProps={{
                                 name: 'haridus_tase',
                                 id: 'haridus_tase',
                             }
@@ -295,32 +292,6 @@ class Victim extends React.Component {
                             <MenuItem value={"Kutseharidus"}>Kutseharidus</MenuItem>
                             <MenuItem value={"Kõrgharidus"}>Kõrgharidus</MenuItem>
                         </Select>
-                        <InputLabel
-                            margin="normal"
-                            className={classes.input}
-                            htmlFor="korduv">Korduv</InputLabel>
-
-                        <Select
-                            id='korduv'
-                            disabled={!this.state.editingEnabled}
-                            value={this.state.formValues.korduv}
-                            onChange={this.handleChange}
-                            className={classes.input}
-                            label="Korduv"
-                            inputProps={{ 
-                                name: 'korduv',
-                                id: 'korduv',
-                            }
-                            }
-                            margin="normal"
-                            fullWidth>
-                            <MenuItem value={"Esmakordne"}>Esmakordne</MenuItem>
-                            <MenuItem value={"Korduv 2019"}>Korduv 2019</MenuItem>
-                            <MenuItem value={"Korduv 2020"}>Korduv 2020</MenuItem>
-                            <MenuItem value={"Korduv 2021"}>Korduv 2021</MenuItem>
-                            <MenuItem value={"Korduv 2022"}>Korduv 2022</MenuItem>
-                        </Select>
-                    
                         <Grid container
                             direction="column"
                             justify="center"

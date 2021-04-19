@@ -19,4 +19,3 @@ file_put_contents($filename, $body);
 
 echo `mysql -h {$conf["DB_ADDR"]} -u {$conf["DB_USER"]} -p{$conf["DB_PASS"]} {$conf["DB_NAME"]} < {$filename}`;
 `../cleaner.sh`;
-?>
