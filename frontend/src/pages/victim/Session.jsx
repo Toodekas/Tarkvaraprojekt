@@ -426,12 +426,15 @@ class Session extends React.Component {
                                         </div>
                                     </FormControl>
                                     <FormControl margin="normal" fullwidth>
-                                        <InputLabel htmlFor="rahastus">Rahastuse liik</InputLabel>
+                                        <InputLabel id="rahastus" htmlFor="rahastus" fullwidth>Rahastuse liik</InputLabel >
                                         <Select
+                                            fullwidth
                                             disabled={!this.state.editingEnabled}
                                             value={this.state.formValues.rahastus}
                                             onChange={this.handleSelectChange}
+                                            label="Rahastuse liik"
                                             placeholder="rahastus"
+                                            labelId="rahastus"
                                             inputProps={{
                                                 name: 'rahastus',
                                                 id: 'rahastus',
@@ -442,11 +445,12 @@ class Session extends React.Component {
                                     </FormControl>
                                     <br/>
                                     <FormControl margin="normal" className={classes.textfield} fullWidth>
-                                        <InputLabel htmlFor="kommentaarid">Kommentaarid</InputLabel>
-                                        <Input
+                                        <TextField
                                             multiline
                                             fullWidth
-                                            variant="filled"
+                                            variant="outlined"
+                                            label = "Kommentaarid"
+                                            labelId = "kommentaarid"
                                             rows="10"
                                             rowsMax="15"
                                             disabled={!this.state.editingEnabled}
@@ -454,7 +458,7 @@ class Session extends React.Component {
                                             onChange={this.handleChange}
                                             id="kommentaarid"
                                         >
-                                        </Input>
+                                        </TextField>
                                     </FormControl>
                                 </Grid>
 

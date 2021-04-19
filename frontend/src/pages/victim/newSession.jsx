@@ -343,10 +343,12 @@ class NewSession extends React.Component {
                                         </div>
                                     </FormControl>
                                     <FormControl margin="normal" fullWidth>
-                                        <InputLabel htmlFor="rahastus">Rahastuse liik</InputLabel>
+                                        <InputLabel id="rahastus" htmlFor="rahastus" >Rahastuse liik</InputLabel>
                                         <Select
+                                            fullwidth
                                             value={this.state.formValues.rahastus}
                                             onChange={this.handleSelectChange}
+                                            labelId="rahastus"
                                             placeholder="rahastus"
                                             inputProps={{
                                                 name: 'rahastus',
@@ -357,18 +359,20 @@ class NewSession extends React.Component {
                                         </Select>
                                     </FormControl>
                                     <br/>
-                                    <FormControl margin="normal" fullwidth>
+                                    <FormControl margin="normal" className={classes.textfield} fullWidth>
                                         <TextField
-                                            label="Kommentaarid"
                                             multiline
                                             fullWidth
-                                            variant="filled"
+                                            variant="outlined"
+                                            label = "Kommentaarid"
+                                            labelId = "kommentaarid"
                                             rows="10"
-                                            rowsMax="20"
+                                            rowsMax="15"
                                             value={this.state.formValues.kommentaarid}
                                             onChange={this.handleChange}
                                             id="kommentaarid"
-                                        />
+                                        >
+                                        </TextField>
                                     </FormControl>
                                 </Grid>
 
