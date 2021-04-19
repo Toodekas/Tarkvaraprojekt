@@ -10,7 +10,7 @@ $update_params = array();
 $params = array("first_name", "last_name", "national_id", "phone", "email", "haridus_tase");
 
 //Loop through all parameters to see if they were asked to be updated
-$c = 5; //Update field count if everything was to be updated
+$c = 6; //Update field count if everything was to be updated
 foreach ($params as $param) {
 	$update_fields[] = $param;
 	if ($body[$param] !== "") {
@@ -36,7 +36,7 @@ if ($c <= 0) {
 
 //Construct the query
 $update_query = "UPDATE clients SET ";
-for ($i = 0; $i < 7; $i++) {
+for ($i = 0; $i < 8; $i++) {
 	if ($i != 0) {
 		$update_query .= ", ";
 	}
@@ -48,5 +48,5 @@ $update_params[] = $body["id"];
 //Execute the query
 $db = get_db();
 $stmt = mysqli_prepare($db, $update_query);
-mysqli_stmt_bind_param($stmt, "sssssssi", ...$update_params);
+mysqli_stmt_bind_param($stmt, "ssssssssi", ...$update_params);
 echo mysqli_stmt_execute($stmt);

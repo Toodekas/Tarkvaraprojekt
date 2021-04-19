@@ -204,7 +204,7 @@ class Incident extends React.Component {
             vana_ohver: 0,
             muu_ohver: 0,
             politsei: "",
-            rahastus: "Muu rahastus"
+            rahastus: ""
         },
         initialValue: {}
     };
@@ -702,12 +702,15 @@ class Incident extends React.Component {
                                             } label="Ei"/>
                                         </RadioGroup>
                                     </FormControl>        
-                                    <FormControl margin="normal" fullwidth>
-                                        <InputLabel htmlFor="rahastus">Rahastuse liik</InputLabel>
+                                    <FormControl margin="normal" fullWidth>
+                                        <InputLabel id="rahastus" htmlFor="rahastus" >Rahastuse liik</InputLabel >
                                         <Select
                                             disabled={!this.state.editingEnabled}
                                             value={this.state.formValues.rahastus}
                                             onChange={this.handleSelectChange}
+                                            label="rahastus"
+                                            placeholder="rahastus"
+                                            labelId="rahastus"
                                             inputProps={{
                                                 name: 'rahastus',
                                                 id: 'rahastus',
@@ -716,9 +719,6 @@ class Incident extends React.Component {
                                             <MenuItem value={"NTK rahastus"}>NTK rahastus</MenuItem>
                                         </Select>
                                     </FormControl>
-
-
-
                                 </Grid>
 
                             </Grid>

@@ -149,7 +149,7 @@ class NewSession extends React.Component {
             kommentaarid: "",
             tootu_kassa: 0,
             muu_partner: 0,
-            rahastus: "-",
+            rahastus: "",
         },
     };
 
@@ -292,7 +292,7 @@ class NewSession extends React.Component {
                                     </FormControl>
                                     <br/>
                                     <FormControl margin="normal">
-                                        <FormLabel>Suunatud MARACi</FormLabel>
+                                        <FormLabel>MARAC</FormLabel>
                                         <RadioGroup className={classes.radiob}>
                                             <FormControlLabel control={
                                                 <Radio

@@ -200,7 +200,7 @@ class Session extends React.Component {
             kommentaarid: "",
             tootu_kassa: 0,
             muu_partner: 0,
-            rahastus: "-",
+            rahastus: "",
         },
         initialValue: {}
     };
@@ -370,7 +370,7 @@ class Session extends React.Component {
                                     </FormControl>
                                     <br/>
                                     <FormControl margin="normal">
-                                        <FormLabel>Suunatud MARACi</FormLabel>
+                                        <FormLabel>MARAC</FormLabel>
                                         <RadioGroup className={classes.radiob}>
                                             <FormControlLabel control={
                                                 <Radio
@@ -425,10 +425,9 @@ class Session extends React.Component {
                                             {checkbox("muu_partner", this.state.formValues.muu_partner, "Muu partner")}
                                         </div>
                                     </FormControl>
-                                    <FormControl margin="normal" fullwidth>
-                                        <InputLabel id="rahastus" htmlFor="rahastus" fullwidth>Rahastuse liik</InputLabel >
+                                    <FormControl margin="normal" fullWidth>
+                                        <InputLabel id="rahastus" htmlFor="rahastus" >Rahastuse liik</InputLabel >
                                         <Select
-                                            fullwidth
                                             disabled={!this.state.editingEnabled}
                                             value={this.state.formValues.rahastus}
                                             onChange={this.handleSelectChange}

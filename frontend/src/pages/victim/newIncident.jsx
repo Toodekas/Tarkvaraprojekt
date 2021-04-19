@@ -134,7 +134,7 @@ class NewIncident extends React.Component {
             vana_ohver: 0,
             muu_ohver: 0,
             politsei: 0,
-            rahastus: "Muu rahastus"
+            rahastus: ""
 
 
         },
@@ -518,10 +518,13 @@ class NewIncident extends React.Component {
                                         </RadioGroup>
                                     </FormControl>
                                     <FormControl margin="normal" fullWidth>
-                                        <InputLabel htmlFor="rahastus">Rahastuse liik</InputLabel>
+                                        <InputLabel id="rahastus" htmlFor="rahastus" >Rahastuse liik</InputLabel>
                                         <Select
+                                            fullwidth
                                             value={this.state.formValues.rahastus}
                                             onChange={this.handleSelectChange}
+                                            labelId="rahastus"
+                                            placeholder="rahastus"
                                             inputProps={{
                                                 name: 'rahastus',
                                                 id: 'rahastus',

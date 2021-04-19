@@ -69,6 +69,12 @@ class Victim extends React.Component {
         this.getVictim()
 
     }
+    handleSelectChange = event => {
+        const formValues = this.state.formValues
+        formValues[event.target.name] = event.target.value
+        this.setState({ formValues });
+        console.log(this.state)
+    };
 
     handleChange = event => {
         const formValues = this.state.formValues;
@@ -278,11 +284,11 @@ class Victim extends React.Component {
                             id='haridus_tase'
                             disabled={!this.state.editingEnabled}
                             value={this.state.formValues.haridus_tase}
-                            onChange={this.handleChange}
+                            onChange={this.handleSelectChange}
                             className={classes.input}
                             label="Haridustase"
-                            inputProps={{ 
-                                name: 'Haridustase',
+                            inputProps={{
+                                name: 'haridus_tase',
                                 id: 'haridus_tase',
                             }
                             }
@@ -293,7 +299,6 @@ class Victim extends React.Component {
                             <MenuItem value={"Kutseharidus"}>Kutseharidus</MenuItem>
                             <MenuItem value={"Kõrgharidus"}>Kõrgharidus</MenuItem>
                         </Select>
-                    
                         <Grid container
                             direction="column"
                             justify="center"
