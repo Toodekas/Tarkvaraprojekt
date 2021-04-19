@@ -145,7 +145,11 @@ class NewSession extends React.Component {
             haridusasutus_kaasatud: 0,
             mtu_kaasatud: 0,
             tuttavad_kaasatud: 0,
-            markused: ""
+            markused: "",
+            kommentaarid: "",
+            tootu_kassa: 0,
+            muu_partner: 0,
+            rahastus: "-",
         },
     };
 
@@ -334,9 +338,38 @@ class NewSession extends React.Component {
                                             {checkbox("haridusasutus_kaasatud", this.state.formValues.haridusasutus_kaasatud, "Haridusasutus")}
                                             {checkbox("mtu_kaasatud", this.state.formValues.mtu_kaasatud, "MTÜ-d")}
                                             {checkbox("tuttavad_kaasatud", this.state.formValues.tuttavad_kaasatud, "Sõbrad, sugulased")}
+                                            {checkbox("tootu_kassa", this.state.formValues.tootu_kassa, "Töötukassa")}
+                                            {checkbox("muu_partner", this.state.formValues.muu_partner, "Muu koostööpartner")}
                                         </div>
                                     </FormControl>
-
+                                    <FormControl margin="normal" fullWidth>
+                                        <InputLabel htmlFor="rahastus">Rahastuse liik</InputLabel>
+                                        <Select
+                                            value={this.state.formValues.rahastus}
+                                            onChange={this.handleSelectChange}
+                                            placeholder="rahastus"
+                                            inputProps={{
+                                                name: 'rahastus',
+                                                id: 'rahastus',
+                                            }}>
+                                            <MenuItem value={"Muu rahastus"}>Muu rahastus</MenuItem>
+                                            <MenuItem value={"NTK rahastus"}>NTK rahastus</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    <br/>
+                                    <FormControl margin="normal" fullwidth>
+                                        <TextField
+                                            label="Kommentaarid"
+                                            multiline
+                                            fullWidth
+                                            variant="filled"
+                                            rows="10"
+                                            rowsMax="20"
+                                            value={this.state.formValues.kommentaarid}
+                                            onChange={this.handleChange}
+                                            id="kommentaarid"
+                                        />
+                                    </FormControl>
                                 </Grid>
 
                                 <Grid container
