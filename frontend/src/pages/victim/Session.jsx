@@ -451,8 +451,8 @@ class Session extends React.Component {
                                             variant="outlined"
                                             label = "Kommentaarid"
                                             labelId = "kommentaarid"
-                                            rows="10"
-                                            rowsMax="15"
+                                            rows="13"
+                                            rowsMax="80"
                                             disabled={!this.state.editingEnabled}
                                             value={this.state.formValues.kommentaarid}
                                             onChange={this.handleChange}

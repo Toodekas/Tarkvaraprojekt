@@ -366,8 +366,8 @@ class NewSession extends React.Component {
                                             variant="outlined"
                                             label = "Kommentaarid"
                                             labelId = "kommentaarid"
-                                            rows="10"
-                                            rowsMax="15"
+                                            rows="13"
+                                            rowsMax="80"
                                             value={this.state.formValues.kommentaarid}
                                             onChange={this.handleChange}
                                             id="kommentaarid"
