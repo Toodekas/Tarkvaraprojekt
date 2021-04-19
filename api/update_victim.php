@@ -7,7 +7,7 @@ $body = json_decode(file_get_contents("php://input"), true);
 
 $update_fields = array();
 $update_params = array();
-$params = array("first_name", "last_name", "national_id", "phone", "email","haridus_tase", "korduv");
+$params = array("first_name", "last_name", "national_id", "phone", "email");
 
 //Loop through all parameters to see if they were asked to be updated
 $c = 5; //Update field count if everything was to be updated
@@ -48,5 +48,5 @@ $update_params[] = $body["id"];
 //Execute the query
 $db = get_db();
 $stmt = mysqli_prepare($db, $update_query);
-mysqli_stmt_bind_param($stmt, "sssssssssi", ...$update_params);
+mysqli_stmt_bind_param($stmt, "sssssssi", ...$update_params);
 echo mysqli_stmt_execute($stmt);
