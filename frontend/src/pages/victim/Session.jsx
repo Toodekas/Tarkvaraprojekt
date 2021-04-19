@@ -452,7 +452,7 @@ class Session extends React.Component {
                                             label = "Kommentaarid"
                                             labelId = "kommentaarid"
                                             rows="13"
-                                            rowsMax="80"
+                                            rowsMax="20"
                                             disabled={!this.state.editingEnabled}
                                             value={this.state.formValues.kommentaarid}
                                             onChange={this.handleChange}
