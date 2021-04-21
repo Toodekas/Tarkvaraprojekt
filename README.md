@@ -52,3 +52,7 @@ Site will be hosted on localhost, default username and password are "asdf"
 2. `yarn build` will build the production version of the site, outputting all the static files to `./public`
 3. [optional] To test the production version of the site, an easy way is to run `yarn serve`, which will create a server from those files.
 
+
+####
+INSERT INTO clients (id) VALUES ((CONVERT(CONCAT(DATE_FORMAT(NOW(), '%Y'), '000'), UNSIGNED)));
+
