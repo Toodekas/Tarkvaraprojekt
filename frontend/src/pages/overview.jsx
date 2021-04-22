@@ -7,6 +7,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { TextField } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
 
 import withRoot from '../withRoot';
 
@@ -46,6 +47,13 @@ class Overview extends React.Component {
     classes: PropTypes.object.isRequired,
   };
 
+  handleDateChange = event => {
+    const formValues = this.state.formValues;
+    const id = event.target.id || event.target.name;
+    formValues[id] = event.target.value;
+    this.setState({ formValues });
+    //console.log('handleChange: ', this.state);
+  };
 
   handleChange = event => {
 
@@ -88,6 +96,34 @@ class Overview extends React.Component {
       });
   };
 
+  recentVictim = (formValues) => {
+    this.axios.get('get_recent_victim.php', {
+      params: formValues,
+    })
+      .then(res => {
+        let data = res.data;
+        console.log('result: ', data);
+        if (!data.length) {
+          throw new Error('NO_CLIENTS_FOUND');
+        }
+        this.setState({ results: data });
+
+      })
+      .catch(err => {
+        if (err.message === 'Request failed with status code 400') {
+          this.setState({ error: 'Viga!!' });
+        } else if (err.message === 'NO_CLIENTS_FOUND') {
+          this.setState({ error: 'Ei leidu kedagi lähiajal muudetud' });
+        } else if (err.message === 'Request failed with status code 401') {
+          this.setState({ error: 'Autentimisviga. Proovi uuesti sisse logida.' });
+        }
+        setTimeout(() => this.setState({ error: '' }), 6000);
+        console.log('Recent err: ', err);
+        this.setState({ results: [] });
+        this.setState({ drawerOpen: true });
+      });
+  };
+
 
   state = {
     searchFields: {
@@ -100,19 +136,64 @@ class Overview extends React.Component {
     },
     results: [],
     error: '',
+    formValues: {
+      alates: '2017-01-01',
+      kuni: '2018-01-01',
+    },
+    data: {},
+    checkboxValues: {},
   };
+
+  componentDidMount() {
+    //this.getReport();
+
+    const algus = new Date();
+    const lopp = new Date();
+
+    algus.setDate(algus.getDate() - 1);
+    lopp.setDate(lopp.getDate());
+    let formValues = { ...this.state.formValues };
+    formValues.alates = algus.toDateInputValue();
+    formValues.kuni = lopp.toDateInputValue();
+
+    this.setState({ formValues });
+  }
 
   handleSearch = event => {
     event.preventDefault();
     this.searchVictim(this.state.searchFields);
   };
 
+  handleRecent = event => {
+    event.preventDefault();
+    console.log(this.state.formValues);
+    this.recentVictim(this.state.formValues);
+  }
+
 
   render() {
     const { classes } = this.props;
+    const { alates, kuni } = this.state.formValues;
+
+    const makeDateField = (id, label) => (
+      <FormControl required margin="normal" className={classes.formControl}>
+        <TextField
+          value={this.state.formValues[id]}
+          id={id}
+          margin="normal"
+          label={label}
+          spacing={2}
+          type="date"
+          onChange={this.handleDateChange}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+      </FormControl>
+    );
 
     const field = (id, label, pattern) => (
-      <TextField
+      <TextField 
         type={id === 'email' ? 'email' : 'text'}
         id={id}
         label={label}
@@ -120,6 +201,7 @@ class Overview extends React.Component {
         value={this.state.searchFields[id]}
         onChange={this.handleChange}
         margin="normal"
+        
         inputProps={{ pattern: pattern }}
       />
     );
@@ -144,7 +226,21 @@ class Overview extends React.Component {
             >
               Otsi
             </Button>
+          </form>
+        </Paper>
 
+        <Paper className={classes.paper}>
+          <form onSubmit={this.handleRecent}>
+            {makeDateField('alates', 'Alates')}
+            {makeDateField('kuni', 'Kuni')}
+            <Button
+              type="submit"
+              variant="outlined"
+              color="primary"
+              className={classes.input}
+            >
+              Hiljutine
+            </Button>
           </form>
         </Paper>
 
@@ -152,12 +248,12 @@ class Overview extends React.Component {
         <Paper className={classes.paper}>
 
           <Grid container
-                direction="column"
-                justify="center"
-                alignItems="center"
-                spacing={8}>
+            direction="column"
+            justify="center"
+            alignItems="center"
+            spacing={8}>
             <Grid item>
-              {(showVictims && <VictimTable classes={classes} victims={this.state.results}/>)}
+              {(showVictims && <VictimTable classes={classes} victims={this.state.results} />)}
 
             </Grid>
             <Grid item>

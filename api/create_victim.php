@@ -23,6 +23,7 @@ $insert_params[] = $username;
 $insert_fields[] = "muutmisaeg";
 $insert_params[] = date("Y-m-d");
 
+
 //At least some info has to exist about the victim
 $c = count($insert_fields);
 if ($c <= 2) {
@@ -39,6 +40,9 @@ for ($i = 0; $i < $c; $i++) {
 	}
 	$insert_query .= $insert_fields[$i] . "=?";
 }
+
+
+
 
 //Execute the query
 $db = get_db();
