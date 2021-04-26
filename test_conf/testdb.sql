@@ -117,6 +117,8 @@ INSERT INTO `incidents` (`id`, `piirkond`, `kliendi_nr`, `keel`, `vanus`, `marac
 (545,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	127,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
 (546,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	127,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
 (547,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	10,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07'),
+(549,	'teadmata',	2018171,	'teadmata',	'teadmata',0,	0,	10,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2021-04-21'),
+
 (548,	'teadmata',	2018191,	'teadmata',	'teadmata',0,	0,	6,	0,	'teadmata',	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'teadmata',	'teadmata',	0,	0,	0,	0,	'Muu rahastus',	'alo',	'2018-12-07');
 
 DROP TABLE IF EXISTS `sessions`;
@@ -167,6 +169,8 @@ INSERT INTO `sessions` (`id`, `incident_id`, `kuupaev`, `kirjeldus`, `sidevahend
 (4152,	523,	'2018-12-07',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-07'),
 (4153,	523,	'2018-12-07',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-07'),
 (4154,	548,	'0000-00-00',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-07'),
+(4333,	549,	'0000-00-00',	'',	0,	0.00,	'teadmata',	0.00,	0.00,	0.00,	0.00,	0.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2021-04-21'),
+
 (4155,	521,	'2018-12-07',	'',	0,	20.00,	'teadmata',	0.00,	55.00,	0.00,	1.00,	2.00,	0.00,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	'',	'alo',	'2018-12-08');
 
 DROP TABLE IF EXISTS `users`;

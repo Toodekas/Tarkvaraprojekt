@@ -23,6 +23,8 @@ import { navigate } from 'gatsby';
 import { letterPattern } from '../../util';
 import ConfirmDelete from '../../components/ConfirmDelete';
 import { isAdmin } from '../../auth';
+import FileSaver from 'file-saver';
+
 
 const styles = theme => ({
     root: {
@@ -107,6 +109,8 @@ class Victim extends React.Component {
             national_id: "",
             haridus_tase: "",
         },
+        data: {},
+
     };
 
     getVictim = () => {
@@ -153,6 +157,28 @@ class Victim extends React.Component {
     handleDeleteOpen = () => {
         this.setState({ isDeleteOpen: true });
     };
+    handleDownloadOpen = () => {
+        this.axios.post('generate_user_info.php', { id: this.props.victimID })
+            .then(res => {
+                this.setState({
+                    data: res.data,
+                  });
+                console.log('download: ', res);
+                this.downloadCSV('aruandlus');
+
+            });
+            
+    };
+    downloadCSV = label => {
+        let csv = this.state.data;
+        //console.log(csv);
+    
+        let filename = label + '-' + this.state.formValues.alates + '-' + this.state.formValues.kuni + '.xls';
+    
+        const blob = new Blob([csv], { type: 'data:text/csv;charset=utf-8' });
+        FileSaver.saveAs(blob, filename);
+      };
+
     handleDeleteClose = () => {
         this.setState({ isDeleteOpen: false });
     };
@@ -305,6 +331,17 @@ class Victim extends React.Component {
                             alignItems="center"
                             spacing={8}>
                             <Grid item>
+                                {!this.state.editingEnabled ?
+                                    <Button
+                                        className={classes.button}
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={e => {
+                                            this.handleDownloadOpen();
+                                        }}
+                                    >
+                                        LAE ALLA ISIKUANDMED
+                                    </Button> : null}
                                 {!this.state.editingEnabled ?
                                     <Button
                                         className={classes.button}
