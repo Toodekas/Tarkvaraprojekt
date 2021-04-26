@@ -204,7 +204,7 @@ class Incident extends React.Component {
             vana_ohver: 0,
             muu_ohver: 0,
             politsei: "",
-            rahastus: ""
+            rahastus: "Sessiooni põhine"
         },
         initialValue: {}
     };
@@ -717,6 +717,7 @@ class Incident extends React.Component {
                                             }}>
                                             <MenuItem value={"Muu rahastus"}>Muu rahastus</MenuItem>
                                             <MenuItem value={"NTK rahastus"}>NTK rahastus</MenuItem>
+                                            <MenuItem value={"Sessiooni Põhine"}>Sessiooni põhine</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Grid>
