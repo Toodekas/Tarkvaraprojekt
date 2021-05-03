@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
@@ -23,7 +23,7 @@ import Grid from '@material-ui/core/Grid';
 import withRoot from '../../withRoot';
 
 import Layout from '../../components/Layout/index';
-import {navigate} from 'gatsby';
+import { navigate } from 'gatsby';
 
 
 const styles = theme => ({
@@ -73,29 +73,29 @@ class NewSession extends React.Component {
     handleSelectChange = event => {
         const formValues = this.state.formValues
         formValues[event.target.name] = event.target.value
-        this.setState({formValues});
+        this.setState({ formValues });
         console.log(this.state)
     };
     handleChange = event => {
         const formValues = this.state.formValues
         formValues[event.target.id] = event.target.value
-        this.setState({formValues});
+        this.setState({ formValues });
     };
     handleNumChange = event => {
         const formValues = this.state.formValues
         formValues[event.target.id] = event.target.value.replace(',', '.')
-        this.setState({formValues});
+        this.setState({ formValues });
     };
 
     checkboxChange = field => {
         const formValues = this.state.formValues
         formValues[field] = (formValues[field] === 0 || formValues[field] === "") ? 1 : 0;
-        this.setState({formValues});
+        this.setState({ formValues });
     };
     radioChange = (field, value) => {
         const formValues = this.state.formValues
         formValues[field] = value
-        this.setState({formValues});
+        this.setState({ formValues });
     };
 
 
@@ -167,7 +167,7 @@ class NewSession extends React.Component {
                 value={value}
                 onChange={this.handleNumChange}
                 id={id}
-                inputProps={{pattern: pattern}}
+                inputProps={{ pattern: pattern }}
             />
         )
 
@@ -179,25 +179,25 @@ class NewSession extends React.Component {
                         this.checkboxChange(id)
                     }}
                 />
-            } label={label}/>
+            } label={label} />
         )
-        const {classes} = this.props;
+        const { classes } = this.props;
         return <Layout title="Uus sessioon">
             <Typography variant="h4" gutterBottom>
                 Lisa uus sessioon
             </Typography>
             <Paper className={classes.paper}>
                 <Grid container
-                      direction="column"
-                      justify="center"
-                      alignItems="center"
-                      spacing={8}>
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                    spacing={8}>
                     <Grid item>
                         <form className={classes.form} onSubmit={this.handleSubmit}>
                             <Grid container
-                                  direction="row"
-                                  justify="center"
-                                  spacing={16}>
+                                direction="row"
+                                justify="center"
+                                spacing={16}>
                                 <Grid item sm={3}>
                                     <FormControl margin="normal" fullwidth>
                                         <TextField
@@ -209,7 +209,7 @@ class NewSession extends React.Component {
 
                                         />
                                     </FormControl>
-                                    <br/>
+                                    <br />
                                     <FormControl margin="normal" fullwidth>
                                         <TextField
                                             label="Kirjeldus"
@@ -220,7 +220,7 @@ class NewSession extends React.Component {
                                             id="kirjeldus"
                                         />
                                     </FormControl>
-                                    <br/>
+                                    <br />
                                     <FormControl margin="normal" fullwidth>
                                         <TextField
                                             label="Märkused"
@@ -237,14 +237,24 @@ class NewSession extends React.Component {
                                             <FormControlLabel control={
                                                 <Radio
                                                     checked={this.state.formValues.sidevahendid === 1}
-                                                    onClick={() => this.radioChange("sidevahendid", 1)}/>
-                                            } label="Jah"/>
+                                                    onClick={() => this.radioChange("sidevahendid", 1)} />
+                                            } label="Jah" />
                                             <FormControlLabel control={
                                                 <Radio
                                                     checked={this.state.formValues.sidevahendid === 0}
-                                                    onClick={() => this.radioChange("sidevahendid", 0)}/>
-                                            } label="Ei"/>
+                                                    onClick={() => this.radioChange("sidevahendid", 0)} />
+                                            } label="Ei" />
                                         </RadioGroup>
+                                    </FormControl>
+                                    <FormControl margin="normal" >
+                                        <Button
+                                            variant="contained"
+                                            component="label"
+                                        >
+                                            <input
+                                                type="file"
+                                            />
+                                        </Button>
                                     </FormControl>
 
                                 </Grid>
@@ -254,24 +264,24 @@ class NewSession extends React.Component {
                                         <FormLabel>Osutatud teenused (tundide arv)</FormLabel>
                                     </FormControl>
                                     {textfield("kriisinoustamine", "Kriisinõustamine", this.state.formValues.kriisinoustamine, "\\d*|(\\d+([.,](00?|25|50?|75))?)")}
-                                     <FormControl>
-                                            <div
-                                                className={classes.input}
-                                            >
-                                                <InputLabel htmlFor="kriisinoustamise_aeg">Kriisinõus. aeg</InputLabel>
-                                                <Select
-                                                    value={this.state.formValues.kriisinoustamise_aeg  === "" ? "Puudub" : this.state.formValues.kriisinoustamise_aeg}
-                                                    onChange={this.handleSelectChange}
-                                                    inputProps={{
-                                                        name: 'kriisinoustamise_aeg',
-                                                        id: 'kriisinoustamise_aeg',
-                                                    }}>
-                                                    <MenuItem value={""}>Puudub</MenuItem>
-                                                    <MenuItem value={"08:00-22:00"}>08:00-22:00</MenuItem>
-                                                    <MenuItem value={"22:00-08:00"}>22:00-08:00</MenuItem>
-                                                    <MenuItem value={"teadmata"}>Teadmata</MenuItem>
-                                                </Select></div>
-                                        </FormControl>
+                                    <FormControl>
+                                        <div
+                                            className={classes.input}
+                                        >
+                                            <InputLabel htmlFor="kriisinoustamise_aeg">Kriisinõus. aeg</InputLabel>
+                                            <Select
+                                                value={this.state.formValues.kriisinoustamise_aeg === "" ? "Puudub" : this.state.formValues.kriisinoustamise_aeg}
+                                                onChange={this.handleSelectChange}
+                                                inputProps={{
+                                                    name: 'kriisinoustamise_aeg',
+                                                    id: 'kriisinoustamise_aeg',
+                                                }}>
+                                                <MenuItem value={""}>Puudub</MenuItem>
+                                                <MenuItem value={"08:00-22:00"}>08:00-22:00</MenuItem>
+                                                <MenuItem value={"22:00-08:00"}>22:00-08:00</MenuItem>
+                                                <MenuItem value={"teadmata"}>Teadmata</MenuItem>
+                                            </Select></div>
+                                    </FormControl>
 
                                     {textfield("juhtuminoustamine", "Juhtumipõhine nõustamine", this.state.formValues.juhtuminoustamine, "\\d*|(\\d+([.,](00?|25|50?|75))?)")}
                                     {textfield("vorgustikutoo", "Võrgustikutöö", this.state.formValues.vorgustikutoo, "\\d*|(\\d+([.,](00?|25|50?|75))?)")}
@@ -284,26 +294,26 @@ class NewSession extends React.Component {
                                     </FormControl>
                                     {textfield("naise_majutus", "Naise majutuspäevade arv", this.state.formValues.naise_majutus, "(\\d*)")}
                                     {textfield("laste_arv", "Kaasasolevate laste arv", this.state.formValues.laste_arv, "(\\d*)")}
-                                    {textfield("laste_majutus", "Laste majutuspäevade arv", this.state.formValues.laste_majutus,"(\\d*)")}
+                                    {textfield("laste_majutus", "Laste majutuspäevade arv", this.state.formValues.laste_majutus, "(\\d*)")}
                                 </Grid>
                                 <Grid item sm={4}>
                                     <FormControl margin="normal" fullwidth>
                                         <FormLabel>Võrgustikutöö teiste organisatsioonidega</FormLabel>
                                     </FormControl>
-                                    <br/>
+                                    <br />
                                     <FormControl margin="normal">
                                         <FormLabel>MARAC</FormLabel>
                                         <RadioGroup className={classes.radiob}>
                                             <FormControlLabel control={
                                                 <Radio
                                                     checked={this.state.formValues.marac === 1}
-                                                    onClick={() => this.radioChange("marac", 1)}/>
-                                            } label="Jah"/>
+                                                    onClick={() => this.radioChange("marac", 1)} />
+                                            } label="Jah" />
                                             <FormControlLabel control={
                                                 <Radio
                                                     checked={this.state.formValues.marac === 0}
-                                                    onClick={() => this.radioChange("marac", 0)}/>
-                                            } label="Ei"/>
+                                                    onClick={() => this.radioChange("marac", 0)} />
+                                            } label="Ei" />
                                         </RadioGroup>
                                     </FormControl>
                                     <FormControl margin="normal">
@@ -314,12 +324,12 @@ class NewSession extends React.Component {
                                                     checked={this.state.formValues.umarlaud === 1}
                                                     onClick={() => this.radioChange("umarlaud", 1)}
                                                 />
-                                            } label="Jah"/>
+                                            } label="Jah" />
                                             <FormControlLabel control={
                                                 <Radio
                                                     checked={this.state.formValues.umarlaud === 0}
-                                                    onClick={() => this.radioChange("umarlaud", 0)}/>
-                                            } label="Ei"/>
+                                                    onClick={() => this.radioChange("umarlaud", 0)} />
+                                            } label="Ei" />
                                         </RadioGroup>
                                     </FormControl>
                                     <FormControl margin="normal" fullWidth>
@@ -358,14 +368,14 @@ class NewSession extends React.Component {
                                             <MenuItem value={"NTK rahastus"}>NTK rahastus</MenuItem>
                                         </Select>
                                     </FormControl>
-                                    <br/>
+                                    <br />
                                     <FormControl margin="normal" className={classes.textfield} fullWidth>
                                         <TextField
                                             multiline
                                             fullWidth
                                             variant="outlined"
-                                            label = "Kommentaarid"
-                                            labelId = "kommentaarid"
+                                            label="Kommentaarid"
+                                            labelId="kommentaarid"
                                             rows="13"
                                             rowsMax="20"
                                             value={this.state.formValues.kommentaarid}
@@ -377,10 +387,10 @@ class NewSession extends React.Component {
                                 </Grid>
 
                                 <Grid container
-                                      direction="column"
-                                      justify="center"
-                                      alignItems="center"
-                                      spacing={8}>
+                                    direction="column"
+                                    justify="center"
+                                    alignItems="center"
+                                    spacing={8}>
                                     <Grid item>
                                         <Button
                                             type="submit"

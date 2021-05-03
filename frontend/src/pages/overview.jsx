@@ -146,13 +146,16 @@ class Overview extends React.Component {
 
   componentDidMount() {
     //this.getReport();
-
+    console.log(algus);
+    console.log("MOUNTED");
+    
     const algus = new Date();
     const lopp = new Date();
 
     algus.setDate(algus.getDate() - 1);
     lopp.setDate(lopp.getDate());
     let formValues = { ...this.state.formValues };
+    console.log(formValues.alates);
     formValues.alates = algus.toDateInputValue();
     formValues.kuni = lopp.toDateInputValue();
 
