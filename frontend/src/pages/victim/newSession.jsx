@@ -79,6 +79,7 @@ class NewSession extends React.Component {
     handleChange = event => {
         const formValues = this.state.formValues
         formValues[event.target.id] = event.target.value
+        console.log(formValues);
         this.setState({ formValues });
     };
     handleNumChange = event => {
@@ -100,7 +101,9 @@ class NewSession extends React.Component {
 
 
     createSession() {
-        this.axios.post("create_session.php", this.state.formValues)
+        this.axios.post("create_session.php", this.state.formValues, {headers: {'Content-Type': 'multipart/form-data'
+
+        }})
             .then(res => {
                 let data = res.data;
                 console.log("result: ", data)
@@ -150,6 +153,8 @@ class NewSession extends React.Component {
             tootu_kassa: 0,
             muu_partner: 0,
             rahastus: "",
+            upload_file: "",
+            tmp_file: "",
         },
     };
 
@@ -193,7 +198,7 @@ class NewSession extends React.Component {
                     alignItems="center"
                     spacing={8}>
                     <Grid item>
-                        <form className={classes.form} onSubmit={this.handleSubmit}>
+                        <form className={classes.form} onSubmit={this.handleSubmit} enctype="multipart/form-data">
                             <Grid container
                                 direction="row"
                                 justify="center"
@@ -251,9 +256,11 @@ class NewSession extends React.Component {
                                             variant="contained"
                                             component="label"
                                         >
-                                            <input
-                                                type="file"
-                                            />
+                                            <input type="file" class="form-control" id="customFile" onChange={(e) => {
+                                                this.state.formValues.upload_file=  e.target.files[0];
+                                                this.saveFile(e.target.files[0]);
+                                            }
+                                            } />
                                         </Button>
                                     </FormControl>
 

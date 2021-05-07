@@ -201,6 +201,7 @@ class Session extends React.Component {
             tootu_kassa: 0,
             muu_partner: 0,
             rahastus: "",
+            upload_file: "",
         },
         initialValue: {}
     };
@@ -325,6 +326,15 @@ class Session extends React.Component {
                                                     onClick={() => this.radioChange("sidevahendid", 0)}/>
                                             } label="Ei"/>
                                         </RadioGroup>
+                                    </FormControl>
+                                    <FormControl margin="normal" >
+                                        <Button
+                                            variant="contained"
+                                            component="label"
+                                            disabled={!this.state.editingEnabled}
+                                        >
+                                            <input type="file" class="form-control" id="customFile" onChange={ (e) => this.state.formValues.upload_file = e.target.files}/>
+                                        </Button>
                                     </FormControl>
                                 </Grid>
 

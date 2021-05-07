@@ -13,6 +13,7 @@ import withRoot from '../withRoot';
 
 import Layout from '../components/Layout';
 import VictimTable from '../components/VictimTable';
+import VictimTableComments from '../components/VictimTableComments'
 import { letterPattern } from '../util';
 
 
@@ -69,6 +70,7 @@ class Overview extends React.Component {
   };
 
   searchVictim = (searchFields) => {
+    this.setState({results2: []});
     this.axios.get('get_victim.php', {
       params: searchFields,
     })
@@ -97,6 +99,7 @@ class Overview extends React.Component {
   };
 
   recentVictim = (formValues) => {
+    this.setState({results: []});
     this.axios.get('get_recent_victim.php', {
       params: formValues,
     })
@@ -106,7 +109,7 @@ class Overview extends React.Component {
         if (!data.length) {
           throw new Error('NO_CLIENTS_FOUND');
         }
-        this.setState({ results: data });
+        this.setState({ results2: data });
 
       })
       .catch(err => {
@@ -119,7 +122,7 @@ class Overview extends React.Component {
         }
         setTimeout(() => this.setState({ error: '' }), 6000);
         console.log('Recent err: ', err);
-        this.setState({ results: [] });
+        this.setState({ results2: [] });
         this.setState({ drawerOpen: true });
       });
   };
@@ -135,6 +138,7 @@ class Overview extends React.Component {
       phone: '',
     },
     results: [],
+    results2: [],
     error: '',
     formValues: {
       alates: '2017-01-01',
@@ -152,7 +156,7 @@ class Overview extends React.Component {
     const algus = new Date();
     const lopp = new Date();
 
-    algus.setDate(algus.getDate() - 1);
+    algus.setDate(algus.getDate() - 8);
     lopp.setDate(lopp.getDate());
     let formValues = { ...this.state.formValues };
     console.log(formValues.alates);
@@ -209,6 +213,7 @@ class Overview extends React.Component {
       />
     );
     const showVictims = this.state.results.length !== 0;
+    const showVictims2 = this.state.results2.length !== 0;
     return (
       <Layout title="Ülevaade" error={this.state.error}>
         <Paper className={classes.paper}>
@@ -257,6 +262,7 @@ class Overview extends React.Component {
             spacing={8}>
             <Grid item>
               {(showVictims && <VictimTable classes={classes} victims={this.state.results} />)}
+              {(showVictims2 && <VictimTableComments classes={classes} victims={this.state.results2} />)}
 
             </Grid>
             <Grid item>

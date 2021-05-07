@@ -22,7 +22,7 @@ if ($c == 0) {
 }
 
 
-$final_query = "SELECT * FROM clients WHERE clients.id IN (SELECT incidents.kliendi_nr FROM incidents WHERE incidents.id in (SELECT sessions.incident_id FROM sessions WHERE sessions.muutmisaeg BETWEEN ? AND ?))" ;
+$final_query = "SELECT clients.id, clients.first_name, clients.last_name, clients.national_id, clients.phone, clients.email, sessions.kirjeldus, sessions.incident_id, sessions.id as session_id FROM `incidents`,`sessions`, `clients` WHERE (clients.id = incidents.kliendi_nr) AND (incidents.id = sessions.incident_id) AND (sessions.kuupaev BETWEEN ? AND ? ) " ;
 $db = get_db();
 $stmt = mysqli_prepare($db, $final_query);
 mysqli_stmt_bind_param($stmt, "ss", ...$where_params);
