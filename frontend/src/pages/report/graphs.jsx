@@ -609,6 +609,7 @@ class Graphs extends React.Component {
             </form>
           
           </Paper>
+          {/*
           <Paper>
             <form onSubmit={this.handleDownload}>
               {makeDateField('alates', 'Alates')}
@@ -654,6 +655,7 @@ class Graphs extends React.Component {
               </Button>
             </form>
           </Paper>
+                
           {
             topics.map(topic => {
               const columns = this.columns.filter(e => e.topic === topic);
@@ -661,7 +663,9 @@ class Graphs extends React.Component {
                 axios={this.props.axios} checkboxValues={this.state.checkboxValues} />;
             })
           }
+          */}
         </div>
+        
       </Layout>
     );
   }
