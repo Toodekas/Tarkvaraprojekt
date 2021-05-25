@@ -160,7 +160,7 @@ class Accounts extends React.Component {
             handlePassword={this.handlePassword}
           />
         </div>
-        <Link to="accounts/new/">
+        <Link to="/accounts/new/">
           <Button variant="contained" color="primary" className={classes.input}>
             Lisa uus kasutaja
           </Button>

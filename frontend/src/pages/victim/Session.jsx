@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 
 import classNames from 'classnames';
 import {withStyles} from '@material-ui/core/styles';
@@ -7,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
 
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -122,6 +124,26 @@ class Session extends React.Component {
     };
 
     updateSession = () => {
+        let formData = new FormData();
+        formData.append('file', this.state.formValues.upload_file);
+        this.axios.post( 'save_file.php',
+                formData,
+                {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+              }
+            ).then(response =>{
+          console.log('SUCCESS!!');
+          console.log(response.data.message);
+          console.log(response.data.image);
+          console.log(response.data);
+          this.state.formValues.upload_file = response.data.image;
+        })
+        .catch(function(){
+          console.log('FAILURE!!');
+          this.state.formValues.upload_file = "";
+        });
         this.axios.post("update_session.php", this.state.formValues).then(res => {
             console.log(res)
         });
@@ -138,6 +160,10 @@ class Session extends React.Component {
         formValues[event.target.name] = event.target.value
         this.setState({formValues});
     };
+
+    downloadFile = event => {
+        
+    }
 
 
     handleChange = event => {
@@ -202,6 +228,7 @@ class Session extends React.Component {
             muu_partner: 0,
             rahastus: "",
             upload_file: "",
+            upload_file_file: "",
         },
         initialValue: {}
     };
@@ -333,8 +360,11 @@ class Session extends React.Component {
                                             component="label"
                                             disabled={!this.state.editingEnabled}
                                         >
-                                            <input type="file" class="form-control" id="customFile" onChange={ (e) => this.state.formValues.upload_file = e.target.files}/>
+                                            <input type="file" class="form-control" id="customFile" onChange={ (e) => this.state.formValues.upload_file_file = e.target.files}/>
                                         </Button>
+                                        
+                                        <Link href={this.state.formValues.upload_file} onClick= { this.downloadFile()}>Lae alla fail
+                                        </Link>
                                     </FormControl>
                                 </Grid>
 

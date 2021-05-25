@@ -101,19 +101,24 @@ class NewSession extends React.Component {
 
     createSession() {
         let formData = new FormData();
-        formData.append('file', this.state.formValues.upload_file);
-        this.axios.post( '/uploads/file.txt',
+        formData.append('file', this.state.formValues.upload_file_file);
+        this.axios.post( 'save_file.php',
                 formData,
                 {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
               }
-            ).then(function(){
+            ).then(response =>{
           console.log('SUCCESS!!');
+          console.log(response.data.message);
+          console.log(response.data.image);
+          console.log(response.data);
+          this.state.formValues.upload_file = response.data.image;
         })
         .catch(function(){
           console.log('FAILURE!!');
+          this.state.formValues.upload_file = "";
         });
 
         this.axios.post("create_session.php", this.state.formValues)
@@ -167,7 +172,7 @@ class NewSession extends React.Component {
             muu_partner: 0,
             rahastus: "",
             upload_file: "",
-            tmp_file: "",
+            upload_file_file: "",
         },
     };
 
@@ -270,7 +275,7 @@ class NewSession extends React.Component {
                                             component="label"
                                         >
                                             <input type="file" class="form-control" id="customFile" onChange={(e) => {
-                                                this.state.formValues.upload_file=  e.target.files[0];
+                                                this.state.formValues.upload_file_file=  e.target.files[0];
                                                 //this.saveFile(e.target.files[0]);
                                             }
                                             } />
